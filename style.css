@@ -1,0 +1,23 @@
+body {
+  background-image: url('background.jpg');
+}
+
+.wrapper {
+  margin-top: 20px;
+}
+
+.panelLayer {
+  opacity: 0.8;
+  min-width: 724px;
+  z-index: 1000;  
+}
+
+.panel {
+  height: 300px;
+  opacity: 0.9;
+  z-index: 1010;  
+}
+
+#osc1-detune {
+  margin-top: -40px;
+}
