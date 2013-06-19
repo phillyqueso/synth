@@ -6,6 +6,10 @@ body {
   margin-top: 20px;
 }
 
+#keyboard {
+  -webkit-user-select: none;
+}
+
 .panelLayer {
   opacity: 0.8;
   min-width: 724px;
