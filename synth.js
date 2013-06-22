@@ -15,7 +15,7 @@ $(function () {
 
   var keyboard = qwertyHancock({
     id: 'keyboard',
-    width: 940,
+    width: 725,
     height: 250,
     octaves: 2,
     startNote: 'C3',
@@ -40,7 +40,7 @@ $(function () {
   $("#attack").knob({
     min: 0,
     max: 1000,
-    width: "100",
+    width: "60",
     change: function(val) {
       attack = (val / 1000);
       _.each(active_voices, function(voice) {
@@ -54,7 +54,7 @@ $(function () {
   $("#osc1-wave").knob({
     min: 0,
     max: 4,
-    width: "100",
+    width: "60",
     change: function(val) {
       wave1 = val;
       _.each(active_voices, function(voice) {
@@ -68,7 +68,7 @@ $(function () {
     min: -4800,
     max: 4800,
     step: 50,
-    width: "100",
+    width: "60",
     change: function(val) {
       detune1 = (val / 100)
       _.each(active_voices, function(voice) {
@@ -81,7 +81,7 @@ $(function () {
   $("#osc2-wave").knob({
     min: 0,
     max: 4,
-    width: "100",
+    width: "60",
     change: function(val) {
       wave2 = val;
       _.each(active_voices, function(voice) {
@@ -96,7 +96,7 @@ $(function () {
     min: -4800,
     max: 4800,
     step: 50,
-    width: "100",
+    width: "60",
     change: function(val) {
       detune2 = (val / 100)
       _.each(active_voices, function(voice) {
@@ -109,7 +109,7 @@ $(function () {
   $("#osc3-wave").knob({
     min: 0,
     max: 4,
-    width: "100",
+    width: "60",
     change: function(val) {
       wave1 = val;
       _.each(active_voices, function(voice) {
@@ -123,7 +123,7 @@ $(function () {
     min: -4800,
     max: 4800,
     step: 50,
-    width: "100",
+    width: "60",
     change: function(val) {
       detune1 = (val / 100)
       _.each(active_voices, function(voice) {
