@@ -13,17 +13,6 @@ var attack = 0.003;
 $(function () {
   var context = new AudioContext();
 
-  var keyboard = qwertyHancock({
-    id: 'keyboard',
-    width: 725,
-    height: 250,
-    octaves: 2,
-    startNote: 'C3',
-    whiteNotesColour: 'white',
-    blackNotesColour: 'black',
-    hoverColour: '#FFEFD5'
-  });
-
   $("#masterVolume").knobKnob({
     snap : 10,          // Snap to zero if less than this deg.
     value: (volume * 100),         // Default rotation
@@ -208,20 +197,53 @@ $(function () {
   })(context);
 
   var active_voices = {};
+  var curOctave = 3;
+  
+  var initKeyboard = function(octave) {
+    octave = octave || 3; // defaults to 3rd octave
+    curOctave = octave;
 
-  keyboard.keyDown(function (note, frequency) {
-    console.log(note, frequency);
-    var voice = null;
-    if (_.keys(active_voices).indexOf(note) == -1) {
-      voice = new Voice(frequency);
-      active_voices[note] = voice;
-    } else {
-      voice = active_voices[note];
+    if ($("#keyboard").children()) {
+      $("#keyboard").children().remove();
     }
-    voice.start();
+      
+    var keyboard = qwertyHancock({
+      id: 'keyboard',
+      width: 725,
+      height: 250,
+      octaves: 2,
+      startNote: 'C' + octave,
+      whiteNotesColour: 'white',
+      blackNotesColour: 'black',
+      hoverColour: '#FFEFD5'
+    });
+
+    keyboard.keyDown(function (note, frequency) {
+      console.log(note, frequency);
+      var voice = null;
+      if (_.keys(active_voices).indexOf(note) == -1) {
+        voice = new Voice(frequency);
+        active_voices[note] = voice;
+      } else {
+        voice = active_voices[note];
+      }
+      voice.start();
+    });
+
+    keyboard.keyUp(function (note, _) {
+      active_voices[note].stop();
+    });
+  }
+  
+  initKeyboard();
+  
+  $(".octavedown").click(function() {
+    initKeyboard(curOctave - 1);
   });
 
-  keyboard.keyUp(function (note, _) {
-    active_voices[note].stop();
+  $(".octaveup").click(function() {
+    initKeyboard(curOctave + 1);
   });
+  
+  
 });
